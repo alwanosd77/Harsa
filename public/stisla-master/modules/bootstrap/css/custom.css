@@ -1,0 +1,152 @@
+.mt-5px{
+	margin-top: 5px !important;
+}
+
+.mb-5px{
+	margin-bottom: 5px !important;
+}
+
+.card .card-body .fullw {
+	width: 100% !important;
+}
+
+select .fullw {
+	width: 100% !important;
+}
+
+.fullw {
+	width: 100% !important;
+}
+
+.dash{
+	color: salmon !important;
+}
+
+.card-event {
+    border: 0px solid !important;
+    border-radius: 10px !important;
+    border-top: 10px solid cornflowerblue !important ;
+}
+
+.body-event{
+	background-color: salmon !important;
+}
+
+.cards-item{
+	border: 1px solid !important;
+    border-left: 13px solid cornflowerblue !important;
+}
+
+.select2{
+	width: 100% !important;
+}
+
+.font-c {
+	font-size: 11px;
+}
+
+.font-set{
+	font-size: 18px !important;
+}
+
+.font-set i{
+	font-size: 18px !important;
+}
+
+.font-wedset{
+	font-size: 22px !important;
+	color: black;
+}
+
+.poster-detail {
+	width: 65% !important;
+}
+
+.dash-img-poster {
+	width: 14em;
+}
+
+
+/*only desktop*/
+@media screen and (min-width: 1024px) {
+ 	.event-card{
+	border-right: 1px solid;
+	}
+}
+
+/*tablet and phone*/
+@media screen and (max-width: 1023px) {
+ 	#expand{
+ 		display: none;
+ 	}
+
+ 	.custom-row {
+		columns: 100px 1 !important;
+	}
+}
+
+.d-none {
+	display: none;
+}
+
+.iframe-customize{
+	width: 100% !important;
+}
+
+.head-accor{
+	background-color: #dff0d8 !important;
+	color: black;
+}
+
+.countdown{
+	font-size: 1em !important;
+}
+
+.donation-icon{
+	font-size: 1.5em !important;
+}
+
+.donation-icon i {
+	font-size: 1em;
+}
+
+.media-customize{
+	border: 1px solid cornflowerblue;
+	border-radius: 10px;
+	padding: 5px;
+	border-left: 15px solid cornflowerblue;
+}
+
+/*only phone*/
+@media screen and (max-width: 766px) {
+ 	.media-customize img{
+ 		margin-top: 3px;
+ 		width: 50%;
+ 	}
+
+ 	.media-customize .btn{
+ 		margin: 3px;
+ 	}
+
+ 	#iframe-custom{
+ 		display: none;
+ 	}
+
+ 	.btn-group-guest{
+ 		text-align: center;
+ 		margin-bottom: 5px;
+ 	}
+
+ 	.handle-item{
+ 		display: none;
+ 	} 
+
+}
+
+.img-gallery{
+	width: 70%;
+}
+
+.li-item{
+	list-style-type: none !important; 
+}

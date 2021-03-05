@@ -9,40 +9,38 @@
 @endsection
 
 @section('title')
-    POST
+    {{ $backUrl }}
 @endsection
 @section('content')
     <!-- Main Content -->
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Posts</h1>
-                <div class="section-header-button">
-                    <a href="{{ route('posts.create') }}" class="btn btn-primary">Add New</a>
-                </div>
+                <h1>{{ $backUrl }}</h1>
+
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="">Posts</a></div>
-                    <div class="breadcrumb-item">All Posts</div>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item">{{ $backUrl }}</div>
                 </div>
             </div>
             <div class="section-body">
-                <h2 class="section-title">Posts</h2>
-                <p class="section-lead">
-                    You can manage all posts, such as editing, deleting and more.
-                </p>
-
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Posts</h4>
-
+                                <div class="section-header-button">
+                                    <a href="{{ route($backUrl . '.create') }}" class="btn btn-primary">Tambah</a>
+                                </div>
                             </div>
                             <div class="card-body">
                                 @if (Session::has('post_success'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('post_success') }}
+                                    <div class="alert alert-success alert-dismissible show fade">
+                                        <div class="alert-body">
+                                            <button class="close" data-dismiss="alert">
+                                                <span>&times;</span>
+                                            </button>
+                                            {{ Session::get('post_success') }}
+                                        </div>
                                     </div>
                                 @endif
                                 <div class="table-responsive">
@@ -52,6 +50,7 @@
                                                 <th class="text-center">
                                                     #
                                                 </th>
+                                                <th>Cover</th>
                                                 <th>Title</th>
                                                 <th>Genre</th>
                                                 <th>Tags</th>
@@ -65,6 +64,10 @@
                                                 <tr id="{{ $item->id }}">
                                                     <td class="align-middle">
                                                         {{ $loop->index + 1 }}
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <img src="{{ asset('images/' . $backUrl . '/cover/' . $item->cover) }}"
+                                                            alt="" class="img-fluid" style="max-width:200px;">
                                                     </td>
                                                     <td class="align-middle">{{ $item->title }}</td>
                                                     <td class="align-middle">
@@ -87,13 +90,12 @@
                                                     </td>
                                                     <td class="align-middle">
                                                         @php
-                                                        echo
-                                                        \Carbon\Carbon::createFromTimeStamp(strtotime($item->created_at))->diffForHumans()
+                                                            echo \Carbon\Carbon::createFromTimeStamp(strtotime($item->created_at))->diffForHumans();
                                                         @endphp
 
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="{{ route('posts.edit', $item->slug) }}"
+                                                        <a href="{{ route($backUrl . '.edit', $item->slug) }}"
                                                             class="btn btn-primary">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
@@ -125,6 +127,7 @@
     <script>
         $(document).ready(function() {
             $(".delete").click(function() {
+                var backUrl = '{{ $backUrl }}';
                 var id = $(this).parents("tr").attr("id");
                 swal({
                         title: 'Are you sure?',
@@ -138,7 +141,7 @@
                             console.log('id :' + id);
                             $.ajax({
                                 type: 'DELETE',
-                                url: "/posts/" + id,
+                                url: "/admin/" + backUrl + "/" + id,
                                 data: {
                                     _token: '{{ csrf_token() }}',
                                 },

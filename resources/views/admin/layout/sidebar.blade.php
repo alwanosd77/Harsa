@@ -1,28 +1,28 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">BLOG</a>
+            <a href="index.html">HARSA</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">BL</a>
+            <a href="index.html">HS</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="{{ request()->is('/') ? 'active' : '' }}">
+            <li class="{{ request()->segment(2) == '' ? 'active' : '' }}">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="menu-header">Informasi</li>
-            <li class="{{ request()->segment(1) == 'posts' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('posts') }}">
+            <li class="{{ request()->segment(2) == 'Posts' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Posts') }}">
                     <i class="fas fa-newspaper"></i>
                     <span>Posts</span>
                 </a>
             </li>
-            <li class="{{ request()->segment(1) == 'project' ? 'active' : '' }}">
-                <a class="nav-link" href="/project">
+            <li class="{{ request()->segment(2) == 'Project' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Project') }}">
                     <i class="fas fa-project-diagram    "></i>
                     <span>Project</span>
                 </a>

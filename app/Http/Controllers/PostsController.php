@@ -8,8 +8,13 @@ use App\Models\Genre;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use File;
 
+
 class PostsController extends Controller
 {
+
+    public $backUrl = 'Posts';
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,10 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Posts::all();
-        return view('admin.pages.posts.index', ['post' => $posts]);
+        return view('admin.pages.' . $this->backUrl . '.index', [
+            'post' => $posts,
+            'backUrl' => $this->backUrl,
+        ]);
     }
 
     /**
@@ -29,7 +37,10 @@ class PostsController extends Controller
     public function create()
     {
         $genres = Genre::all();
-        return view('admin.pages.posts.create', ['genre' => $genres]);
+        return view('admin.pages.' . $this->backUrl . '.create', [
+            'genre' => $genres,
+            'backUrl' => $this->backUrl,
+        ]);
     }
 
     /**
@@ -50,8 +61,8 @@ class PostsController extends Controller
         ]);
 
         // pindah file gambar
-        $imageName = 'post-cover-' . time() . '.' . $request->cover->extension();
-        $request->cover->move(public_path('images/post/cover'), $imageName);
+        $imageName = $this->backUrl . '-cover-' . time() . '.' . $request->cover->extension();
+        $request->cover->move(public_path('images/' . $this->backUrl . '/cover'), $imageName);
 
         $post = new Posts();
         $post->title = $request->title;
@@ -62,7 +73,7 @@ class PostsController extends Controller
         $post->status = $request->status;
         $post->cover = $imageName;
         $post->save();
-        return redirect('/posts')->with('post_success', 'Post Has Been Created Successfully');
+        return redirect()->route($this->backUrl)->with('post_success', $this->backUrl . ' Has Been Created Successfully');
     }
 
     /**
@@ -86,9 +97,10 @@ class PostsController extends Controller
     {
         $genres = Genre::all();
         $post = Posts::where('slug', '=', $slug)->firstOrFail();
-        return view('admin.pages.posts.edit', [
+        return view('admin.pages.' . $this->backUrl . '.edit', [
             'genre' => $genres,
-            'post' => $post
+            'post' => $post,
+            'backUrl' => $this->backUrl,
         ]);
     }
 
@@ -112,13 +124,13 @@ class PostsController extends Controller
         if ($request->cover) {
             $post = Posts::where('slug', '=', $slug)->firstOrFail();
 
-            if (File::exists(public_path('images/post/cover/' . $post->cover))) {
-                File::delete(public_path('images/post/cover/' . $post->cover));
+            if (File::exists(public_path('images/' . $this->backUrl . '/cover/' . $post->cover))) {
+                File::delete(public_path('images/' . $this->backUrl . '/cover/' . $post->cover));
             }
 
             // pindah file gambar
-            $imageName = 'post-cover-' . time() . '.' . $request->cover->extension();
-            $request->cover->move(public_path('images/post/cover'), $imageName);
+            $imageName = $this->backUrl . '-cover-' . time() . '.' . $request->cover->extension();
+            $request->cover->move(public_path('images/' . $this->backUrl . '/cover'), $imageName);
 
             $post->title = $request->title;
             $post->slug = SlugService::createSlug(Posts::class, 'slug', $request->title);
@@ -139,7 +151,7 @@ class PostsController extends Controller
             $post->update();
         }
 
-        return redirect('/posts')->with('post_success', 'Post Has Been Created Successfully');
+        return redirect()->route($this->backUrl)->with('post_success', $this->backUrl . ' Has Been Created Successfully');
     }
 
     /**
@@ -153,16 +165,16 @@ class PostsController extends Controller
 
         $post = Posts::findOrFail($id);
         if ($post->delete()) {
-            if (File::exists(public_path('images/post/cover/' . $post->cover))) {
-                File::delete(public_path('images/post/cover/' . $post->cover));
+            if (File::exists(public_path('images/' . $this->backUrl . '/cover/' . $post->cover))) {
+                File::delete(public_path('images/' . $this->backUrl . '/cover/' . $post->cover));
             } else {
             }
             return response()->json([
-                'success' => 'Post Deleted',
+                'success' => $this->backUrl . ' Deleted',
             ]);
         }
         return response()->json([
-            'error' => 'Post Not Found',
+            'error' => $this->backUrl . ' Not Found',
         ]);
     }
 }

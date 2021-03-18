@@ -33,15 +33,15 @@
                     <span>Gallery</span>
                 </a>
             </li>
-            <li class="{{ request()->segment(1) == 'services' ? 'active' : '' }}">
-                <a class="nav-link" href="/services">
-                    <i class="fas fa-wrench    "></i>
+            <li class="{{ request()->segment(2) == 'Service' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Service') }}">
+                    <i class="fas fa-wrench"></i>
                     <span>Services</span>
                 </a>
             </li>
             <li class="menu-header">Company</li>
-            <li class="{{ request()->segment(1) == 'employee' ? 'active' : '' }}">
-                <a class="nav-link" href="/employee">
+            <li class="{{ request()->segment(2) == 'Employee' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Employee') }}">
                     <i class="fas  fa-user-tie    "></i>
                     <span>Employee</span>
                 </a>

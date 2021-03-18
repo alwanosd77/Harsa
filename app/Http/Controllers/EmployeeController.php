@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\Employee;
 use Illuminate\Http\Request;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use File;
 
-class ProjectController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public $backUrl = 'Project';
-
+    public $backUrl = 'Employee';
     public function index()
     {
-        $project = Project::all();
+        $employee = Employee::all();
         return view('admin.pages.' . $this->backUrl . '.index', [
-            'project' => $project,
+            'employee' => $employee,
             'backUrl' => $this->backUrl
         ]);
     }
@@ -48,7 +45,8 @@ class ProjectController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'caption' => 'required',
+            'position' => 'required',
             'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -56,22 +54,22 @@ class ProjectController extends Controller
         $imageName = $this->backUrl . '-cover-' . time() . '.' . $request->cover->extension();
         $request->cover->move(public_path('images/' . $this->backUrl . '/cover'), $imageName);
 
-        $project = new Project();
-        $project->name = $request->name;
-        $project->slug = SlugService::createSlug(Project::class, 'slug', $request->name);
-        $project->description = $request->description;
-        $project->cover = $imageName;
-        $project->save();
+        $employee = new Employee();
+        $employee->name = $request->name;
+        $employee->position = $request->position;
+        $employee->caption = $request->caption;
+        $employee->cover = $imageName;
+        $employee->save();
         return redirect()->route($this->backUrl)->with('post_success', $this->backUrl . ' Has Been Created Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Employee $employee)
     {
         //
     }
@@ -79,14 +77,14 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $project = Project::where('slug', '=', $slug)->firstOrFail();
+        $employee = Employee::findOrFail($id);
         return view('admin.pages.' . $this->backUrl . '.edit', [
-            'project' => $project,
+            'employee' => $employee,
             'backUrl' => $this->backUrl,
         ]);
     }
@@ -95,37 +93,38 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'caption' => 'required',
+            'position' => 'required',
         ]);
 
-        $project = Project::where('slug', '=', $slug)->firstOrFail();
+        $employee = Employee::findOrFail($id);
         if ($request->cover) {
 
-            if (File::exists(public_path('images/' . $this->backUrl . '/cover/' . $project->cover))) {
-                File::delete(public_path('images/' . $this->backUrl . '/cover/' . $project->cover));
+            if (File::exists(public_path('images/' . $this->backUrl . '/cover/' . $employee->cover))) {
+                File::delete(public_path('images/' . $this->backUrl . '/cover/' . $employee->cover));
             }
 
             // pindah file gambar
             $imageName = $this->backUrl . '-cover-' . time() . '.' . $request->cover->extension();
             $request->cover->move(public_path('images/' . $this->backUrl . '/cover'), $imageName);
 
-            $project->name = $request->name;
-            $project->slug = SlugService::createSlug(Project::class, 'slug', $request->name);
-            $project->description = $request->description;
-            $project->cover = $imageName;
-            $project->update();
+            $employee->name = $request->name;
+            $employee->position = $request->position;
+            $employee->caption = $request->caption;
+            $employee->cover = $imageName;
+            $employee->update();
         } else {
-            $project->name = $request->name;
-            $project->slug = SlugService::createSlug(Project::class, 'slug', $request->name);
-            $project->description = $request->description;
-            $project->update();
+            $employee->name = $request->name;
+            $employee->position = $request->position;
+            $employee->caption = $request->caption;
+            $employee->update();
         }
 
         return redirect()->route($this->backUrl)->with('post_success', $this->backUrl . ' Has Been Created Successfully');
@@ -134,16 +133,16 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $project = Project::findOrFail($id);
+        $employee = Employee::findOrFail($id);
 
-        if ($project->delete()) {
-            if (File::exists(public_path('images/' . $this->backUrl . '/cover/' . $project->cover))) {
-                File::delete(public_path('images/' . $this->backUrl . '/cover/' . $project->cover));
+        if ($employee->delete()) {
+            if (File::exists(public_path('images/' . $this->backUrl . '/cover/' . $employee->cover))) {
+                File::delete(public_path('images/' . $this->backUrl . '/cover/' . $employee->cover));
             } else {
             }
             return response()->json([

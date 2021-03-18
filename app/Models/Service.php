@@ -4,22 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Genre;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Posts extends Model
+class Service extends Model
 {
     use HasFactory;
     use Sluggable;
-    protected $table = 'posts';
+
     protected $fillable = [
         'title',
         'slug',
-        'content',
-        'cover',
-        'tags',
-        'status',
-        'genre_id',
+        'description',
     ];
 
     public function sluggable(): array
@@ -29,10 +24,5 @@ class Posts extends Model
                 'source' => 'title'
             ]
         ];
-    }
-
-    public function genre()
-    {
-        return $this->belongsTo(Genre::class);
     }
 }

@@ -18,7 +18,7 @@ class Project extends Model
         'cover',
     ];
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

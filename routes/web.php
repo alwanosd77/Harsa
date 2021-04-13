@@ -5,6 +5,9 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +20,7 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function () {
@@ -60,6 +61,20 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Employee/update/{id}', [EmployeeController::class, 'update'])->name('Employee.update');
         Route::delete('/Employee/{id}', [EmployeeController::class, 'destroy'])->name('Employee.delete');
         Route::get('/Employee/edit/{id}', [EmployeeController::class, 'edit'])->name('Employee.edit');
+
+        Route::get('/Partner', [PartnerController::class, 'index'])->name('Partner');
+        Route::get('/Partner/create', [PartnerController::class, 'create'])->name('Partner.create');
+        Route::post('/Partner/save', [PartnerController::class, 'store'])->name('Partner.save');
+        Route::post('/Partner/update/{id}', [PartnerController::class, 'update'])->name('Partner.update');
+        Route::delete('/Partner/{id}', [PartnerController::class, 'destroy'])->name('Partner.delete');
+        Route::get('/Partner/edit/{id}', [PartnerController::class, 'edit'])->name('Partner.edit');
+
+        Route::get('/Slider', [SliderController::class, 'index'])->name('Slider');
+        Route::get('/Slider/create', [SliderController::class, 'create'])->name('Slider.create');
+        Route::post('/Slider/save', [SliderController::class, 'store'])->name('Slider.save');
+        Route::post('/Slider/update/{id}', [SliderController::class, 'update'])->name('Slider.update');
+        Route::delete('/Slider/{id}', [SliderController::class, 'destroy'])->name('Slider.delete');
+        Route::get('/Slider/edit/{id}', [SliderController::class, 'edit'])->name('Slider.edit');
     });
 });
 

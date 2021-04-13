@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('content');
-            $table->string('cover');
+            $table->text('cover');
             $table->text('tags');
             $table->string('status');
             $table->unsignedBigInteger('genre_id');

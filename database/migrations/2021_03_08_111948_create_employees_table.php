@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->string('position');
             $table->longText('caption');
-            $table->string('cover');
+            $table->text('cover');
             $table->timestamps();
         });
     }

@@ -14,6 +14,13 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <li class="menu-header">Pesan</li>
+            <li class="{{ request()->segment(2) == 'Posts' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Posts') }}">
+                    <i class="fas fa-inbox"></i>
+                    <span>Pesan Masuk</span>
+                </a>
+            </li>
             <li class="menu-header">Informasi</li>
             <li class="{{ request()->segment(2) == 'Posts' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('Posts') }}">
@@ -52,15 +59,15 @@
                     <span>About</span>
                 </a>
             </li>
-            <li class="{{ request()->segment(1) == 'partners' ? 'active' : '' }}">
-                <a class="nav-link" href="/partners">
+            <li class="{{ request()->segment(2) == 'Partner' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Partner') }}">
                     <i class="fas fa-handshake    "></i>
                     <span>Partners</span>
                 </a>
             </li>
             <li class="menu-header">Display</li>
-            <li class="{{ request()->segment(1) == 'slider' ? 'active' : '' }}">
-                <a class="nav-link" href="/slider">
+            <li class="{{ request()->segment(2) == 'Slider' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Slider') }}">
                     <i class="fas fa-sliders-h    "></i>
                     <span>Slider</span>
                 </a>

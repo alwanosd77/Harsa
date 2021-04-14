@@ -72,8 +72,8 @@
                     <span>Slider</span>
                 </a>
             </li>
-            <li class="{{ request()->segment(1) == 'general' ? 'active' : '' }}">
-                <a class="nav-link" href="/general">
+            <li class="{{ request()->segment(2) == 'General' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('General.edit') }}">
                     <i class="fas fa-info-circle    "></i>
                     <span>General</span>
                 </a>

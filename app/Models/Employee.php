@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Project;
 
 class Employee extends Model
 {
@@ -24,5 +25,10 @@ class Employee extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function project()
+    {
+        return $this->hasMany(Project::class);
     }
 }

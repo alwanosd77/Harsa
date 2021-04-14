@@ -4,8 +4,7 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('stisla-master/modules/summernote/summernote-bs4.css') }}">
-    <link rel="stylesheet" href="{{ asset('stisla-master/modules/jquery-selectric/selectric.css') }}">
-    <link rel="stylesheet" href="{{ asset('stisla-master/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
+    <link rel="stylesheet" href="{{ asset('stisla-master/modules/select2/dist/css/select2.min.css') }}">
 @endsection
 
 
@@ -46,7 +45,7 @@
                                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                     {{-- title --}}
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-md-6">
                                             <div class="form-group mb-4">
                                                 <label class="form-label text-md-left ">Name</label>
                                                 <input type="text" class="form-control" name="name"
@@ -56,7 +55,48 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label class="form-label text-md-left ">Tanggal Selesai</label>
+                                                <input type="date" class="form-control" name="completed_at"
+                                                    value="{{ old('completed_at') }}">
+                                                @error('completed_at')
+                                                    <span class=" text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label class="form-label text-md-left ">Person in Charge</label>
+                                                <select class="form-control select2" name="employee_id">
+                                                    @foreach ($employees as $employee)
+                                                        <option value="{{ $employee->id }}">{{ $employee->name }}
+                                                        </option>
+                                                    @endforeach
+
+                                                </select>
+                                                @error('employee_id')
+                                                    <span class=" text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label class="form-label text-md-left ">Partner</label>
+                                                <select class="form-control select2" name="partner_id">
+                                                    @foreach ($partners as $partner)
+                                                        <option value="{{ $partner->id }}">{{ $partner->name }}
+                                                        </option>
+                                                    @endforeach
+
+                                                </select>
+                                                @error('partner_id')
+                                                    <span class=" text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
+
 
 
                                     {{-- content --}}
@@ -120,9 +160,8 @@
 @endsection
 @section('script')
     <script src="{{ asset('stisla-master/modules/summernote/summernote-bs4.min.js') }}"></script>
-    <script src="{{ asset('stisla-master/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
-    <script src="{{ asset('stisla-master/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('stisla-master\assets\js\upload\jquery.uploadPreview.min.js') }}"></script>
+    <script src="{{ asset('stisla-master/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('stisla-master/assets/js/page/features-post-create.js') }}"></script>
     <script>
         $(document).ready(function(e) {

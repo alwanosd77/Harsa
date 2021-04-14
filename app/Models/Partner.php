@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Project;
 
 class Partner extends Model
 {
@@ -13,4 +14,9 @@ class Partner extends Model
         'url',
         'cover',
     ];
+
+    public function project()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

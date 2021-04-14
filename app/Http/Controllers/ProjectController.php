@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\Partner;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -33,8 +35,12 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $employees = Employee::all();
+        $partners = Partner::all();
         return view('admin.pages.' . $this->backUrl . '.create', [
             'backUrl' => $this->backUrl,
+            'employees' => $employees,
+            'partners' => $partners,
         ]);
     }
 
@@ -48,6 +54,9 @@ class ProjectController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
+            'completed_at' => 'required',
+            'employee_id' => 'required',
+            'partner_id' => 'required',
             'description' => 'required',
             'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -60,6 +69,9 @@ class ProjectController extends Controller
         $project->name = $request->name;
         $project->slug = SlugService::createSlug(Project::class, 'slug', $request->name);
         $project->description = $request->description;
+        $project->completed_at = $request->completed_at;
+        $project->employee_id = $request->employee_id;
+        $project->partner_id = $request->partner_id;
         $project->cover = $imageName;
         $project->save();
         return redirect()->route($this->backUrl)->with('post_success', $this->backUrl . ' Has Been Created Successfully');
@@ -84,10 +96,14 @@ class ProjectController extends Controller
      */
     public function edit($slug)
     {
+        $employees = Employee::all();
+        $partners = Partner::all();
         $project = Project::where('slug', '=', $slug)->firstOrFail();
         return view('admin.pages.' . $this->backUrl . '.edit', [
             'project' => $project,
             'backUrl' => $this->backUrl,
+            'employees' => $employees,
+            'partners' => $partners,
         ]);
     }
 
@@ -102,6 +118,9 @@ class ProjectController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
+            'completed_at' => 'required',
+            'employee_id' => 'required',
+            'partner_id' => 'required',
             'description' => 'required',
         ]);
 
@@ -119,12 +138,18 @@ class ProjectController extends Controller
             $project->name = $request->name;
             $project->slug = SlugService::createSlug(Project::class, 'slug', $request->name);
             $project->description = $request->description;
+            $project->completed_at = $request->completed_at;
+            $project->employee_id = $request->employee_id;
+            $project->partner_id = $request->partner_id;
             $project->cover = $imageName;
             $project->update();
         } else {
             $project->name = $request->name;
             $project->slug = SlugService::createSlug(Project::class, 'slug', $request->name);
             $project->description = $request->description;
+            $project->completed_at = $request->completed_at;
+            $project->employee_id = $request->employee_id;
+            $project->partner_id = $request->partner_id;
             $project->update();
         }
 

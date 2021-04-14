@@ -53,7 +53,9 @@
                                                 <th>Cover</th>
                                                 <th>Nama</th>
                                                 <th>Deskripsi</th>
-                                                <th>Created At</th>
+                                                <th>Tanggal Selesai</th>
+                                                <th>PIC</th>
+                                                <th>Partner</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -75,9 +77,13 @@
                                                     </td>
 
                                                     <td class="align-middle">
-                                                        @php
-                                                            echo \Carbon\Carbon::createFromTimeStamp(strtotime($item->created_at))->diffForHumans();
-                                                        @endphp
+                                                        {{ $item->completed_at->format('d M Y') }}
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        {{ $item->employee->name }}
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        {{ $item->partner->name }}
                                                     </td>
                                                     <td class="align-middle">
                                                         <a href="{{ route($backUrl . '.edit', $item->slug) }}"

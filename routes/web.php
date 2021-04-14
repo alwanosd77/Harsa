@@ -8,7 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\SliderController;
-
+use App\Http\Controllers\GeneralController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +21,8 @@ use App\Http\Controllers\SliderController;
 */
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/projects', [LandingController::class, 'project'])->name('landing.project');
+Route::get('/projects/{slug}', [LandingController::class, 'projectDetail'])->name('landing.project.detail');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function () {
@@ -75,6 +77,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Slider/update/{id}', [SliderController::class, 'update'])->name('Slider.update');
         Route::delete('/Slider/{id}', [SliderController::class, 'destroy'])->name('Slider.delete');
         Route::get('/Slider/edit/{id}', [SliderController::class, 'edit'])->name('Slider.edit');
+
+        Route::post('/General/update', [GeneralController::class, 'update'])->name('General.update');
+        Route::get('/General/edit', [GeneralController::class, 'edit'])->name('General.edit');
     });
 });
 

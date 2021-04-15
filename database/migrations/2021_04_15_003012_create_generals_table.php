@@ -25,6 +25,8 @@ class CreateGeneralsTable extends Migration
             $table->string('linkedin')->nullable();
             $table->string('email')->nullable();
             $table->string('quote')->nullable();
+            $table->string('gmaps')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->timestamps();
         });
     }

@@ -32,25 +32,34 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="section-title">Contact</div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
-                                                <label class="form-label text-md-left ">Phone</label>
-                                                <input type="tel" class="form-control" name="phone"
-                                                    value="{{ $general->phone }}">
-                                                @error('phone')
-                                                    <span class=" text-danger">{{ $message }}</span>
-                                                @enderror
+                                                <label>Phone Number</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            +62
+                                                        </div>
+                                                    </div>
+                                                    <input type="tel" class="form-control phone-number"
+                                                        value="{{ $general->phone }}" name="phone">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-4">
-                                                <label class="form-label text-md-left ">Fax</label>
-                                                <input type="tel" class="form-control" name="fax"
-                                                    value="{{ $general->fax }}">
-                                                @error('fax')
-                                                    <span class=" text-danger">{{ $message }}</span>
-                                                @enderror
+                                                <label>Fax</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            +62
+                                                        </div>
+                                                    </div>
+                                                    <input type="tel" class="form-control phone-number" name="fax"
+                                                        value="{{ $general->fax }}">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -61,6 +70,46 @@
                                                 @error('email')
                                                     <span class=" text-danger">{{ $message }}</span>
                                                 @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label class="form-label text-md-left ">Gmaps</label>
+                                                <input type="url" class="form-control" name="gmaps"
+                                                    value="{{ $general->gmaps }}">
+                                                @error('gmaps')
+                                                    <span class=" text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group mb-4">
+                                                <label class="form-label text-md-left">Address</label>
+                                                <textarea class="form-control" name="address" style="height: 100%"
+                                                    rows="3">{{ $general->address }}</textarea>
+                                                @error('address')
+                                                    <span class=" text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <hr>
+                                    <div class="section-title">Social Media</div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label>Whatsapp</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            +62
+                                                        </div>
+                                                    </div>
+                                                    <input type="tel" class="form-control phone-number" name="whatsapp"
+                                                        value="{{ $general->whatsapp }}">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -114,20 +163,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="section-title">Content</div>
 
-                                    {{-- content --}}
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group mb-4">
-                                                <label class="form-label text-md-left">Address</label>
-                                                <textarea class="form-control" name="address" style="height: 100%"
-                                                    rows="3">{{ $general->address }}</textarea>
-                                                @error('address')
-                                                    <span class=" text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group mb-4">

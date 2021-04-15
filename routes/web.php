@@ -5,10 +5,12 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\GeneralController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +82,11 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/General/update', [GeneralController::class, 'update'])->name('General.update');
         Route::get('/General/edit', [GeneralController::class, 'edit'])->name('General.edit');
+
+        Route::get('/Gallery/create', [GalleryController::class, 'create'])->name('Gallery.create');
+        Route::post('/Gallery/save', [GalleryController::class, 'store'])->name('Gallery.save');
+        Route::get('/Gallery', [GalleryController::class, 'index'])->name('Gallery');
+        Route::delete('/Gallery/{id}', [GalleryController::class, 'destroy'])->name('Gallery.delete');
     });
 });
 

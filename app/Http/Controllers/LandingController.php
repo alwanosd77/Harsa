@@ -22,4 +22,21 @@ class LandingController extends Controller
         $general = General::findOrFail(1);
         return view('landing.pages.index', compact('sliders', 'projects', 'employees', 'services', 'partners', 'general'));
     }
+
+    public function project()
+    {
+        $sliders = Slider::all();
+        $projects = Project::all();
+        $general = General::findOrFail(1);
+        return view('landing.pages.Project.index', compact('sliders', 'projects', 'general'));
+    }
+
+    public function projectDetail($slug)
+    {
+        $sliders = Slider::all();
+        $project = Project::where('slug', $slug)->first();
+        $projects = Project::where('slug', '!=', $slug)->get();
+        $general = General::findOrFail(1);
+        return view('landing.pages.Project.detail', compact('sliders', 'project', 'projects', 'general'));
+    }
 }

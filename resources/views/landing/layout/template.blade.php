@@ -30,7 +30,7 @@
         <div id="home" class="page-section" style="position:absolute;top:0;left:0;width:100%;height:200px;z-index:-2;">
         </div>
 
-        @include('landing.layout.slider')
+        @yield('slider')
 
         <!-- Header ============================================= -->
         @include('landing.layout.navbar')

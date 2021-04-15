@@ -10,6 +10,8 @@ class General extends Model
     use HasFactory;
     protected $fillable = [
         'phone',
+        'whatsapp',
+        'gmaps',
         'address',
         'fax',
         'facebook',

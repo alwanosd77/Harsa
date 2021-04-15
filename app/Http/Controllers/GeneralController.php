@@ -80,6 +80,8 @@ class GeneralController extends Controller
 
         $general->phone =  $request->phone;
         $general->address =  $request->address;
+        $general->whatsapp =  $request->whatsapp;
+        $general->gmaps =  $request->gmaps;
         $general->fax =  $request->fax;
         $general->facebook =  $request->facebook;
         $general->twitter =  $request->twitter;

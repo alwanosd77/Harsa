@@ -2,6 +2,10 @@
 @section('title')
     Harsa
 @endsection
+@section('slider')
+    @include('landing.layout.slider')
+
+@endsection
 @section('content')
     <section id="content">
         <div class="content-wrap">
@@ -319,8 +323,9 @@
                     <ul class="clients-grid grid-2 grid-sm-3 grid-md-5 mb-0">
                         @forelse ($partners as $partner)
                             <li class="grid-item">
-                                <a href="{{ $partner->url }}"><img
-                                        src="{{ asset('images/partner/cover/' . $partner->cover) }}" alt="Clients"></a>
+                                <a href="{{ $partner->url }}" target="__blank">
+                                    <img src="{{ asset('images/partner/cover/' . $partner->cover) }}" alt="Clients">
+                                </a>
                             </li>
                         @empty
 
@@ -512,7 +517,7 @@
                                         <a href="#"><i class="icon-map-marker2"></i></a>
                                     </div>
                                     <div class="fbox-content">
-                                        <h3>Our Headquarters<span class="subtitle">{{ $general->address }}</span></h3>
+                                        <h3>Our Headquarters<span class="subtitle">{!! $general->address !!}</span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -523,7 +528,7 @@
                                         <a href="#"><i class="icon-phone3"></i></a>
                                     </div>
                                     <div class="fbox-content">
-                                        <h3>Speak to Us<span class="subtitle">{{ $general->phone }}</span></h3>
+                                        <h3>Speak to Us<span class="subtitle">(+62) {{ $general->phone }}</span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -534,7 +539,11 @@
                                         <a href="#"><i class="icon-facebook2"></i></a>
                                     </div>
                                     <div class="fbox-content">
-                                        <h3>Add us On Facebook<span class="subtitle">{{ $general->facebook }}</span></h3>
+                                        <h3>Add us On Facebook
+                                            <span class="subtitle">
+                                                <a href="{{ $general->facebook }}">Click Here</a>
+                                            </span>
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
@@ -545,7 +554,11 @@
                                         <a href="#"><i class="icon-twitter2"></i></a>
                                     </div>
                                     <div class="fbox-content">
-                                        <h3>Follow on Twitter<span class="subtitle">{{ $general->twitter }}</span></h3>
+                                        <h3>Follow on Twitter
+                                            <span class="subtitle">
+                                                <a href="{{ $general->twitter }}">Click Here</a>
+                                            </span>
+                                        </h3>
                                     </div>
                                 </div>
                             </div>

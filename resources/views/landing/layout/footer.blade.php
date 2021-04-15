@@ -12,24 +12,17 @@
 
                             <div class="widget clearfix">
 
-                                <img src="{{ asset('front/images/footer-widget-logo.png') }}" alt="Image"
-                                    class="footer-logo">
-
-                                <p>We believe in <strong>Simple</strong>, <strong>Creative</strong> &amp;
-                                    <strong>Flexible</strong> Design Standards.
-                                </p>
-
+                                <H2>HARSA</H2>
                                 <div
                                     style="background: url('{{ asset('front/images/world-map.png') }}') no-repeat center center; background-size: 100%;">
                                     <address>
-                                        <strong>Headquarters:</strong><br>
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
+                                        <strong>Office:</strong><br>
+                                        {!! $general->address !!}<br>
                                     </address>
-                                    <abbr title="Phone Number"><strong>Phone:</strong></abbr> (1) 8547
-                                    632521<br>
-                                    <abbr title="Fax"><strong>Fax:</strong></abbr> (1) 11 4752 1433<br>
-                                    <abbr title="Email Address"><strong>Email:</strong></abbr> info@canvas.com
+                                    <abbr title="Phone Number"><strong>Phone:</strong></abbr>
+                                    (+62) {{ $general->phone }}<br>
+                                    <abbr title="Fax"><strong>Fax:</strong></abbr> (+62) {{ $general->fax }}<br>
+                                    <abbr title="Email Address"><strong>Email:</strong></abbr> {{ $general->email }}
                                 </div>
 
                             </div>
@@ -210,9 +203,6 @@
             <div class="row col-mb-30">
 
                 <div class="col-md-6 text-center text-md-left">
-                    Copyrights &copy; 2020 All Rights Reserved by Canvas Inc.<br>
-                    <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a>
-                    </div>
                 </div>
 
                 <div class="col-md-6 text-center text-md-right">
@@ -227,30 +217,17 @@
                             <i class="icon-twitter"></i>
                         </a>
 
-                        <a href="#" class="social-icon si-small si-borderless si-gplus">
-                            <i class="icon-gplus"></i>
-                            <i class="icon-gplus"></i>
+                        <a href="#" class="social-icon si-small si-borderless si-youtube">
+                            <i class="icon-youtube"></i>
+                            <i class="icon-youtube"></i>
                         </a>
 
-                        <a href="#" class="social-icon si-small si-borderless si-pinterest">
-                            <i class="icon-pinterest"></i>
-                            <i class="icon-pinterest"></i>
+                        <a href="#" class="social-icon si-small si-borderless si-instagram">
+                            <i class="icon-instagram"></i>
+                            <i class="icon-instagram"></i>
                         </a>
 
-                        <a href="#" class="social-icon si-small si-borderless si-vimeo">
-                            <i class="icon-vimeo"></i>
-                            <i class="icon-vimeo"></i>
-                        </a>
 
-                        <a href="#" class="social-icon si-small si-borderless si-github">
-                            <i class="icon-github"></i>
-                            <i class="icon-github"></i>
-                        </a>
-
-                        <a href="#" class="social-icon si-small si-borderless si-yahoo">
-                            <i class="icon-yahoo"></i>
-                            <i class="icon-yahoo"></i>
-                        </a>
 
                         <a href="#" class="social-icon si-small si-borderless si-linkedin">
                             <i class="icon-linkedin"></i>
@@ -260,9 +237,8 @@
 
                     <div class="clear"></div>
 
-                    <i class="icon-envelope2"></i> info@canvas.com <span class="middot">&middot;</span> <i
-                        class="icon-headphones"></i> +1-11-6541-6369 <span class="middot">&middot;</span> <i
-                        class="icon-skype2"></i> CanvasOnSkype
+                    <i class="icon-envelope2"></i> {{ $general->email }} <span class="middot">&middot;</span> <i
+                        class="icon-headphones"></i> {{ $general->phone }}
                 </div>
 
             </div>

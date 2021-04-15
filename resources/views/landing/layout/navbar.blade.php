@@ -33,13 +33,15 @@
                 <nav class="primary-menu">
 
                     <ul class="menu-container one-page-menu" data-easing="easeInOutExpo" data-speed="1500">
-                        <li class="menu-item"><a class="menu-link" href="#" data-href="#home">
+                        <li class="menu-item {{ request()->segment(1) == '' ? 'current' : '' }}"><a class="menu-link"
+                                href="#">
                                 <div>Home</div>
                             </a></li>
                         <li class="menu-item"><a class="menu-link" href="#" data-href="#section-about">
                                 <div>About</div>
                             </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#" data-href="#section-work">
+                        <li class="menu-item {{ request()->segment(1) == 'projects' ? 'current' : '' }}"><a
+                                class="menu-link" href="{{ route('landing.project') }}">
                                 <div>Projects</div>
                             </a></li>
                         <li class="menu-item"><a class="menu-link" href="#" data-href="#section-team">

@@ -132,12 +132,15 @@
         </section>
     </div>
 @endsection
-@section('script')
+@section('libraryJS')
     <script src="{{ asset('stisla-master/modules/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('stisla-master/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('stisla-master/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('stisla-master\assets\js\upload\jquery.uploadPreview.min.js') }}"></script>
     <script src="{{ asset('stisla-master/assets/js/page/features-post-create.js') }}"></script>
+@endsection
+@section('script')
+
     <script>
         $(document).ready(function(e) {
             $('#image').change(function() {

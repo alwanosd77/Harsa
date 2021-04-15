@@ -23,7 +23,7 @@
 <script src="{{ asset('stisla-master/assets/js/stisla.js') }}"></script>
 
 <!-- JS Libraies -->
-
+@yield('libraryJS')
 <!-- Template JS File -->
 <script src="{{ asset('stisla-master/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('stisla-master/assets/js/custom.js') }}"></script>

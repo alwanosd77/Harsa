@@ -34,8 +34,8 @@
                     <span>Project</span>
                 </a>
             </li>
-            <li class="{{ request()->segment(1) == 'Gallery' ? 'active' : '' }}">
-                <a class="nav-link" href="/Gallery">
+            <li class="{{ request()->segment(2) == 'Gallery' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('Gallery') }}">
                     <i class="fas fa-images"></i>
                     <span>Gallery</span>
                 </a>

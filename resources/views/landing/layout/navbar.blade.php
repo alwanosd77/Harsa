@@ -34,33 +34,32 @@
 
                     <ul class="menu-container one-page-menu" data-easing="easeInOutExpo" data-speed="1500">
                         <li class="menu-item {{ request()->segment(1) == '' ? 'current' : '' }}"><a class="menu-link"
-                                href="#">
+                                href="{{ route('landing') }}">
                                 <div>Home</div>
                             </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#" data-href="#section-about">
+                        <li class="menu-item"><a class="menu-link" href="#">
                                 <div>About</div>
                             </a></li>
                         <li class="menu-item {{ request()->segment(1) == 'projects' ? 'current' : '' }}"><a
                                 class="menu-link" href="{{ route('landing.project') }}">
                                 <div>Projects</div>
                             </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#" data-href="#section-team">
+                        <li class="menu-item {{ request()->segment(1) == 'teams' ? 'current' : '' }}"><a
+                                class="menu-link" href="{{ route('landing.team') }}">
                                 <div>Team</div>
                             </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#" data-href="#section-services">
-                                <div>Services</div>
-                            </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#" data-href="#section-services">
+
+                        <li class="menu-item {{ request()->segment(1) == 'gallery' ? 'current' : '' }}"><a
+                                class="menu-link" href="{{ route('landing.gallery') }}">
                                 <div>Gallery</div>
                             </a></li>
 
-                        <li class="menu-item"><a class="menu-link" href="blog.html">
+                        <li class="menu-item {{ request()->segment(1) == 'blog' ? 'current' : '' }}"><a
+                                class="menu-link" href="{{ route('landing.blog') }}">
                                 <div>Blog</div>
                             </a></li>
 
-                        <li class="menu-item"><a class="menu-link" href="#" data-href="#section-contact">
-                                <div>Contact</div>
-                            </a></li>
+
                     </ul>
 
                 </nav><!-- #primary-menu end -->

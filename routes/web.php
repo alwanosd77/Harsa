@@ -23,8 +23,16 @@ use App\Http\Controllers\GeneralController;
 */
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+
 Route::get('/projects', [LandingController::class, 'project'])->name('landing.project');
 Route::get('/projects/{slug}', [LandingController::class, 'projectDetail'])->name('landing.project.detail');
+
+Route::get('/teams', [LandingController::class, 'team'])->name('landing.team');
+
+Route::get('/gallery', [LandingController::class, 'gallery'])->name('landing.gallery');
+
+Route::get('/blog', [LandingController::class, 'blog'])->name('landing.blog');
+Route::get('/blog/{slug}', [LandingController::class, 'blogDetail'])->name('landing.blog.detail');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function () {

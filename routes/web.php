@@ -10,6 +10,8 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,9 @@ Route::get('/teams', [LandingController::class, 'team'])->name('landing.team');
 
 Route::get('/gallery', [LandingController::class, 'gallery'])->name('landing.gallery');
 
+Route::get('/about-us/{slug}', [LandingController::class, 'about'])->name('landing.about');
+Route::post('/email-us', [MailController::class, 'sendMail'])->name('landing.email-us');
+
 Route::get('/blog', [LandingController::class, 'blog'])->name('landing.blog');
 Route::get('/blog/{slug}', [LandingController::class, 'blogDetail'])->name('landing.blog.detail');
 
@@ -41,6 +46,13 @@ Route::middleware(['auth'])->group(function () {
             return view('admin.pages.dashboard');
         })->name('dashboard');
 
+        //about
+        Route::get('/About', [AboutController::class, 'index'])->name('About');
+        Route::get('/About/create', [AboutController::class, 'create'])->name('About.create');
+        Route::post('/About/save', [AboutController::class, 'store'])->name('About.save');
+        Route::post('/About/update/{slug}', [AboutController::class, 'update'])->name('About.update');
+        Route::delete('/About/{id}', [AboutController::class, 'destroy'])->name('About.delete');
+        Route::get('/About/edit/{slug}', [AboutController::class, 'edit'])->name('About.edit');
 
         //post
         Route::get('/Posts', [PostsController::class, 'index'])->name('Posts');

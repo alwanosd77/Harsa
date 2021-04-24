@@ -11,3 +11,5 @@
 
 <link rel="stylesheet" href="{{ asset('front/css/custom.css') }}" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+@yield('style')

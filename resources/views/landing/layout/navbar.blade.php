@@ -37,9 +37,24 @@
                                 href="{{ route('landing') }}">
                                 <div>Home</div>
                             </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#">
-                                <div>About</div>
-                            </a></li>
+                        <li class="menu-item sub-menu">
+                            <a class="menu-link" href="" style="padding-top: 19px; padding-bottom: 19px;">
+                                <div>About<i class="icon-angle-down"></i></div>
+                            </a>
+                            <ul class="sub-menu-container" style="">
+                                @forelse ($abouts as $aboutNav)
+                                    <li class="menu-item" style="">
+                                        <a class="menu-link" href="{{ route('landing.about', $aboutNav->slug) }}">
+                                            <div>{{ $aboutNav->title }}</div>
+                                        </a>
+                                    </li>
+                                @empty
+
+                                @endforelse
+
+                            </ul>
+                        </li>
+
                         <li class="menu-item {{ request()->segment(1) == 'projects' ? 'current' : '' }}"><a
                                 class="menu-link" href="{{ route('landing.project') }}">
                                 <div>Projects</div>

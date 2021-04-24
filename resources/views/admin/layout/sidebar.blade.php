@@ -53,8 +53,8 @@
                     <span>Employee</span>
                 </a>
             </li>
-            <li class="{{ request()->segment(1) == 'about' ? 'active' : '' }}">
-                <a class="nav-link" href="/about">
+            <li class="{{ request()->segment(2) == 'About' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('About') }}">
                     <i class="fas fa-low-vision"></i>
                     <span>About</span>
                 </a>

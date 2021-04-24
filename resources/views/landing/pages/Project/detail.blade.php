@@ -40,7 +40,7 @@
                             <li>
                                 <span>
                                     <i class="icon-user"></i>
-                                    Created by:
+                                    Ketua Tim:
                                 </span>
                                 {{ $project->employee->name }}
                             </li>
@@ -79,10 +79,12 @@
                             <div class="portfolio-item">
                                 <div class="portfolio-image">
                                     <a href="{{ route('landing.project.detail', $item->slug) }}">
-                                        <img src="{{ asset('images/project/cover/' . $item->cover) }}" alt="Open Imagination">
+                                        <img src="{{ asset('images/project/cover/' . $item->cover) }}"
+                                            alt="Open Imagination">
                                     </a>
                                     <div class="bg-overlay">
-                                        <div class="bg-overlay-content dark" data-hover-animate="fadeIn" data-hover-speed="350">
+                                        <div class="bg-overlay-content dark" data-hover-animate="fadeIn"
+                                            data-hover-speed="350">
                                             <a href="{{ asset('images/project/cover/' . $item->cover) }}"
                                                 class="overlay-trigger-icon bg-light text-dark"
                                                 data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeInUpSmall"
@@ -98,7 +100,8 @@
                                     </div>
                                 </div>
                                 <div class="portfolio-desc">
-                                    <h3><a href="{{ route('landing.project.detail', $item->slug) }}">{{ $item->name }}</a>
+                                    <h3><a
+                                            href="{{ route('landing.project.detail', $item->slug) }}">{{ $item->name }}</a>
                                     </h3>
 
                                 </div>

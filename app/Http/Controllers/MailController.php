@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use App\Models\General;
 
 class MailController extends Controller
 {
@@ -18,7 +19,9 @@ class MailController extends Controller
                 'subject' => $isi['subject'],
                 'message' => $isi['message'],
             ];
-            Mail::to('dauzic99@gmail.com')->send(new \App\Mail\MyTestMail($details));
+
+            $general = General::findOrFail(1);
+            Mail::to($general->email)->send(new \App\Mail\MyTestMail($details));
             return response()->json([
                 'isi' => 'BISA',
             ]);
